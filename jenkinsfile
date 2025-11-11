@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven3'
+    }
+
     environment {
         SERVER_IP    = '13.126.227.41'
         SSH_CRED_ID  = 'web-key'
@@ -41,10 +45,10 @@ pipeline {
 
     post {
         success {
-            echo "App deployed! Visit: http://${SERVER_IP}:8080/"
+            echo "✅ App deployed successfully! Visit: http://${SERVER_IP}:8080/"
         }
         failure {
-            echo "Deployment failed."
+            echo "❌ Deployment failed. Check logs for details."
         }
     }
 }
